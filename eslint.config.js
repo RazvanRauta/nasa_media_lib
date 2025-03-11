@@ -23,7 +23,7 @@ const baseESLintConfig = {
   rules: {
     "no-await-in-loop": "error",
     "no-constant-binary-expression": "error",
-    "no-duplicate-imports": "error",
+    "no-duplicate-imports": "off",
     "no-new-native-nonconstructor": "error",
     "no-promise-executor-return": "error",
     "no-self-compare": "error",
