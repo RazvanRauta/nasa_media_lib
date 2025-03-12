@@ -4,5 +4,5 @@ import type { SearchContextType } from "../stores/search/search-context";
 
 export const Route = createFileRoute("/")({
 	component: Home,
-	validateSearch: () => ({}) as SearchContextType
+	validateSearch: () => ({}) as SearchContextType,
 });

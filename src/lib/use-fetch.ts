@@ -1,21 +1,21 @@
-import { useCallback } from 'react';
+import { useCallback } from "react";
 
-import type { FetchInitType, FetchInputType } from '../types/fetch-parameters';
-import useFetchBase from './use-fetch-base';
+import type { FetchInitType, FetchInputType } from "../types/fetch-parameters";
+import useFetchBase from "./use-fetch-base";
 
 function useFetch() {
-  const fetchBase = useFetchBase();
+	const fetchBase = useFetchBase();
 
-  const fetchWrapper = useCallback(
-    async (input: FetchInputType, init?: FetchInitType) => {
-      const response = await fetchBase(input, init);
+	const fetchWrapper = useCallback(
+		async (input: FetchInputType, init?: FetchInitType) => {
+			const response = await fetchBase(input, init);
 
-      return response;
-    },
-    [fetchBase],
-  );
+			return response;
+		},
+		[fetchBase]
+	);
 
-  return fetchWrapper;
+	return fetchWrapper;
 }
 
 export default useFetch;

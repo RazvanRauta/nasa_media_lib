@@ -1,6 +1,6 @@
 export type KeyType<K = unknown> = {
-  key: Array<K>;
-  sub?: Record<string, BodyType>;
+	key: Array<K>;
+	sub?: Record<string, BodyType>;
 };
 
 // Need for recursive type
@@ -8,7 +8,7 @@ export type KeyType<K = unknown> = {
 export type BodyType = (...parameters: Array<any>) => KeyType;
 
 export type AllType = {
-  all: () => Pick<KeyType, 'key'>;
+	all: () => Pick<KeyType, "key">;
 };
 
 /*
@@ -72,33 +72,35 @@ export type AllType = {
    */
 
 export function createQueryKeys<T extends Record<string, BodyType>>(
-  rootName: Array<unknown>,
-  keys: T = {} as T,
+	rootName: Array<unknown>,
+	keys: T = {} as T
 ): T & AllType {
-  return {
-    all: () => ({
-      key: rootName,
-    }),
-    ...(Object.keys(keys).reduce(
-      (accumulator, key) => ({
-        ...accumulator,
-        [key]: (...parameters: Parameters<BodyType>) => {
-          const keysKey = keys[key];
-          if (typeof keysKey === 'function') {
-            const { key: keyName, sub } = keysKey(...parameters as Array<unknown>);
+	return {
+		all: () => ({
+			key: rootName,
+		}),
+		...(Object.keys(keys).reduce(
+			(accumulator, key) => ({
+				...accumulator,
+				[key]: (...parameters: Parameters<BodyType>) => {
+					const keysKey = keys[key];
+					if (typeof keysKey === "function") {
+						const { key: keyName, sub } = keysKey(
+							...(parameters as Array<unknown>)
+						);
 
-            return {
-              key: [...rootName, key, ...keyName],
-              ...(sub && {
-                sub: createQueryKeys([...rootName, key, ...keyName], sub),
-              }),
-            };
-          }
+						return {
+							key: [...rootName, key, ...keyName],
+							...(sub && {
+								sub: createQueryKeys([...rootName, key, ...keyName], sub),
+							}),
+						};
+					}
 
-          return accumulator;
-        },
-      }),
-      {},
-    ) as T),
-  };
+					return accumulator;
+				},
+			}),
+			{}
+		) as T),
+	};
 }
