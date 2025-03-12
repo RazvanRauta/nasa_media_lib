@@ -4,20 +4,27 @@ import {
 	type Datum,
 	type ItemLink,
 } from "../../../types/nasa-response";
+import type { SearchContextType } from "../../../stores/search/search-context";
 
 export const ResultCard = ({
 	item,
 	links,
+	search,
 }: {
 	item: Datum;
 	links: Array<ItemLink>;
+	search: SearchContextType;
 }) => {
 	const imgSource =
 		links.find((link) => link.rel === ItemLinkType.Preview)?.href || "";
 
 	return (
-		// @ts-expect-error type error
-		<Link className="h-full" to={`/media/${item.nasa_id}`}>
+		<Link
+			className="w-full h-full"
+			params={{ mediaId: item.nasa_id }}
+			state={{ item, links, search }}
+			to={`/media/$mediaId`}
+		>
 			<div className="w-full h-full border border-gray-700 shadow-xl card bg-base-100">
 				<figure>
 					{imgSource ? (

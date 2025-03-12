@@ -29,6 +29,18 @@ export const ResultsGrid = () => {
 		return <Loader />;
 	}
 
+	if (!data && !searchContext.query) {
+		return (
+			<div className="container flex items-center justify-center w-full h-full mt-5">
+				<div className="flex items-center justify-center px-4 py-4 mx-auto bg-gray-800 border border-gray-400 rounded-md bg-opacity-30 bg-clip-padding backdrop-filter backdrop-blur-sm">
+					<p className="text-xl text-info">
+						Please enter a search term to get started
+					</p>
+				</div>
+			</div>
+		);
+	}
+
 	if (!data || (data?.length === 0 && searchContext.query)) {
 		return (
 			<div className="container flex items-center justify-center w-full h-full mt-5">
@@ -56,6 +68,7 @@ export const ResultsGrid = () => {
 									key={datum.nasa_id}
 									item={datum}
 									links={item.links}
+									search={searchContext}
 								/>
 							);
 						})

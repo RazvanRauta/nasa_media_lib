@@ -1,37 +1,34 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/rules-of-hooks */
 import * as React from "react";
 import {
 	ErrorComponent,
 	createFileRoute,
 	useRouter,
+	useRouterState,
 	type ErrorComponentProps,
 } from "@tanstack/react-router";
-import {
-	useQueryErrorResetBoundary,
-	useSuspenseQuery,
-} from "@tanstack/react-query";
+import { useQueryErrorResetBoundary } from "@tanstack/react-query";
+import { NotFoundComponent } from "../components/not-found";
+import { MediaShow } from "../components/media-show";
 
-export class PostNotFoundError extends Error {
+export class MediaNotFoundError extends Error {
 	public constructor() {
 		super();
-		this.name = "PostNotFoundError";
+		this.name = "MediaNotFoundError";
 	}
 }
 
 export const Route = createFileRoute("/media/$mediaId")({
-	loader: ({ context: { queryClient }, params: { mediaId } }) => {
-		// return queryClient.ensureQueryData(postQueryOptions(postId));
-	},
-	errorComponent: PostErrorComponent,
-	component: PostComponent,
+	errorComponent: MediaErrorComponent,
+	component: MediaComponent,
 });
 
-export function PostErrorComponent({
+export function MediaErrorComponent({
 	error,
 }: ErrorComponentProps): React.ReactNode {
 	const router = useRouter();
-	if (error instanceof PostNotFoundError) {
+
+	if (error instanceof MediaNotFoundError) {
 		return <div>{error?.message}</div>;
 	}
 	const queryErrorResetBoundary = useQueryErrorResetBoundary();
@@ -54,13 +51,14 @@ export function PostErrorComponent({
 	);
 }
 
-function PostComponent(): React.ReactNode {
-	const { mediaId } = Route.useParams();
-	// const { data: post } = useSuspenseQuery(postQueryOptions(postId));
+function MediaComponent(): React.ReactNode {
+	const { item, links, search } = useRouterState({
+		select: (s) => s.location.state,
+	});
 
-	return (
-		<>
-			<h4 className="text-xl font-bold underline">{mediaId}</h4>
-		</>
-	);
+	if (!item || !links) {
+		return <NotFoundComponent />;
+	}
+
+	return <MediaShow item={item} links={links} search={search} />;
 }

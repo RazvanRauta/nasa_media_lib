@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import { routeTree } from "./routeTree.gen.ts";
 import "./styles/tailwind.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import type { Datum, ItemLink } from "./types/nasa-response.ts";
+import type { SearchContextType } from "./stores/search/search-context.ts";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +25,12 @@ const router = createRouter({
 declare module "@tanstack/react-router" {
 	interface Register {
 		router: typeof router;
+	}
+
+	interface HistoryState {
+		item: Datum;
+		links: Array<ItemLink>;
+		search: SearchContextType;
 	}
 }
 
