@@ -10,7 +10,9 @@ export const Route = createRootRouteWithContext<{
 		return (
 			<div>
 				<p>Not Found</p>
-				<Link to="/">Start Over</Link>
+				<Link search={{ query: "" }} to="/">
+					Start Over
+				</Link>
 			</div>
 		);
 	},

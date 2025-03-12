@@ -61,7 +61,7 @@ export const SearchImagesForm = () => {
 	return (
 		<FormProvider {...methods}>
 			<form data-testid="search-form" onSubmit={onSubmit}>
-				<div className="grid gap-4 grid-cols-2 mt-4">
+				<div className="grid grid-cols-2 gap-4 mt-4">
 					<FormInput
 						large
 						className="col-span-2"
@@ -70,19 +70,15 @@ export const SearchImagesForm = () => {
 						placeholder="Search: e.g. apollo 11"
 						type="search"
 					/>
-					<div className="col-span-2 flex gap-4">
+					<div className="flex col-span-2 gap-4">
 						<FormInput
 							hint="1920 - current year"
-							maxLength={4}
-							minLength={4}
 							name="startYear"
 							placeholder="Start Year (optional)"
 							type="number"
 						/>
 						<FormInput
 							hint="1920 - current year"
-							maxLength={4}
-							minLength={4}
 							name="endYear"
 							placeholder="End Year (optional)"
 							type="number"
@@ -90,7 +86,7 @@ export const SearchImagesForm = () => {
 					</div>
 
 					<button
-						className="btn btn-outline btn-primary col-span-2"
+						className="col-span-2 btn btn-outline btn-primary"
 						type="submit"
 					>
 						<SearchIcon />

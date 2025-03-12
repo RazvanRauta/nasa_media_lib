@@ -17,7 +17,7 @@ export const useImageSearchQuery = ({
 	yearEnd,
 }: ImageSearchQueryParameters) => {
 	const mediaType = "image";
-	const pageSize = "20";
+	const pageSize = "6";
 	const fetch = useSearchForImagesService();
 
 	const queryFn = useQuery({

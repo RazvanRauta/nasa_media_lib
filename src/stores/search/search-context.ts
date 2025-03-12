@@ -9,6 +9,7 @@ export interface SearchContextType {
 
 export interface SearchActionsContextType {
 	setQuery: (data: SearchContextType) => void;
+	setPage: (page: string) => void;
 }
 
 export const SearchContext = createContext<SearchContextType>({
@@ -18,4 +19,5 @@ export const SearchContext = createContext<SearchContextType>({
 
 export const SearchActionsContext = createContext<SearchActionsContextType>({
 	setQuery: () => {},
+	setPage: () => {},
 });

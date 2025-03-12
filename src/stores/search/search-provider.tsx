@@ -36,9 +36,16 @@ function SearchProvider({ children }: PropsWithChildren) {
 		[setFilters]
 	);
 
+	const setPage = useCallback(
+		(page: string) => {
+			setFilters({ page });
+		},
+		[setFilters]
+	);
+
 	return (
 		<SearchContext.Provider value={search}>
-			<SearchActionsContext.Provider value={{ setQuery }}>
+			<SearchActionsContext.Provider value={{ setQuery, setPage }}>
 				{children}
 			</SearchActionsContext.Provider>
 		</SearchContext.Provider>

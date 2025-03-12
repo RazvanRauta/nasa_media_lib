@@ -6,7 +6,7 @@ import SearchProvider from "../stores/search/search-provider";
 export const Home = (): FunctionComponent => {
 	return (
 		<SearchProvider>
-			<div className="container flex flex-col items-center">
+			<div className="container flex flex-col items-center h-full">
 				<SearchImages />
 				<ResultsGrid />
 			</div>
