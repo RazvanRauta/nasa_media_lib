@@ -54,7 +54,7 @@ export const ResultsGrid = () => {
 	}
 
 	return (
-		<div className="flex flex-col py-10">
+		<div className="flex flex-col py-10" data-testid="results-grid">
 			<div className="container grid grid-cols-1 gap-4 mx-auto md:grid-cols-2 lg:grid-cols-3">
 				{data && data.length > 0
 					? data.map((item) => {

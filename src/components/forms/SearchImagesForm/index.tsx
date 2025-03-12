@@ -65,6 +65,7 @@ export const SearchImagesForm = () => {
 					<FormInput
 						large
 						className="col-span-2"
+						data-testid="search-input"
 						icon={<SearchIcon />}
 						name="search"
 						placeholder="Search: e.g. apollo 11"
@@ -72,12 +73,14 @@ export const SearchImagesForm = () => {
 					/>
 					<div className="flex col-span-2 gap-4">
 						<FormInput
+							data-testid="start-year"
 							hint="1920 - current year"
 							name="startYear"
 							placeholder="Start Year (optional)"
 							type="number"
 						/>
 						<FormInput
+							data-testid="end-year"
 							hint="1920 - current year"
 							name="endYear"
 							placeholder="End Year (optional)"
@@ -87,6 +90,7 @@ export const SearchImagesForm = () => {
 
 					<button
 						className="col-span-2 btn btn-outline btn-primary"
+						data-testid="search-button"
 						type="submit"
 					>
 						<SearchIcon />

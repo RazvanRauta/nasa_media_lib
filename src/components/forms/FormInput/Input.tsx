@@ -29,7 +29,14 @@ export const Input = ({
 				<input {...props} className="grow" />
 			</label>
 			{hint ? <p className="fieldset-label">{hint}</p> : null}
-			{error ? <p className="fieldset-error text-error">{error}</p> : null}
+			{error ? (
+				<p
+					className="fieldset-error text-error"
+					data-testid={`${props.name}-error`}
+				>
+					{error}
+				</p>
+			) : null}
 		</fieldset>
 	);
 };
