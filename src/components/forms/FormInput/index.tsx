@@ -4,23 +4,25 @@ import type React from "react";
 import type { InputProps } from "./Input";
 import { Input } from "./Input";
 
-export type FormTextInputProps<
+export type FormInputProps<
 	TFieldValues extends FieldValues = FieldValues,
 	TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = Pick<ControllerProps<TFieldValues, TName>, "name" | "defaultValue"> &
 	InputProps;
 
-function FormTextInput<
+function FormInput<
 	TFieldValues extends FieldValues = FieldValues,
 	TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
->(props: FormTextInputProps<TFieldValues, TName>): React.ReactNode {
+>(props: FormInputProps<TFieldValues, TName>): React.ReactNode {
 	return (
 		<Controller
 			defaultValue={props.defaultValue}
 			name={props.name}
-			render={({ field }) => <Input {...field} {...props} />}
+			render={({ field, fieldState: { error } }) => (
+				<Input {...field} {...props} error={error?.message} />
+			)}
 		/>
 	);
 }
 
-export default FormTextInput;
+export default FormInput;

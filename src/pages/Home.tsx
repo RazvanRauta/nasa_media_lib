@@ -1,9 +1,11 @@
 import type { FunctionComponent } from "../common/types";
+import { SearchImages } from "../components/search-images";
+import SearchProvider from "../stores/search/search-provider";
 
 export const Home = (): FunctionComponent => {
 	return (
-		<>
-			<p className="text-black text-6xl">"Hello, World"</p>
-		</>
+		<SearchProvider>
+			<SearchImages />
+		</SearchProvider>
 	);
 };

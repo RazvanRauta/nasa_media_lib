@@ -20,6 +20,9 @@ importers:
       '@tanstack/react-router':
         specifier: ^1.51.6
         version: 1.114.12(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       dayjs:
         specifier: ^1.11.13
         version: 1.11.13

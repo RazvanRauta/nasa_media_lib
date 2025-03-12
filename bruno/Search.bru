@@ -1,0 +1,18 @@
+meta {
+  name: Search
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://images-api.nasa.gov/search?q=mars&page=2&page_size=20&media_type=image
+  body: none
+  auth: none
+}
+
+params:query {
+  q: mars
+  page: 2
+  page_size: 20
+  media_type: image
+}
